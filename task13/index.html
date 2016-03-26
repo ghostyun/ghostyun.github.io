@@ -39,7 +39,7 @@
 	 	var data_input = oAqiInput.value;
 	 	
 	 	// 显示数据在aqi-display中
-	 	oAqiDisplay.innerHTML = filter(data_input) ? data_input : data_display_bef;
+	 	oAqiDisplay.innerHTML = filter(data_input) ? toString(data_input) : data_display_bef;
 	 }
 
 	 // 判断字符串是否有效
@@ -58,6 +58,12 @@
 		 }
 
 	 	return false;
+	 }
+
+	 // 把所有输入(html、js代码)转为字符串
+	 function toString (data) {
+
+	 	return '<xmp style="display: inline-block;">' + data + '</xmp>';
 	 }
 
 })();
