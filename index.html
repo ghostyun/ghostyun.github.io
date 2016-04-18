@@ -7,7 +7,7 @@
 <style>
 	p.title {text-align: center; font-size: 30px; color: orange;}
 	div#Bckgrnd {width: 600px; height: 600px; border: 1px solid #ccc; margin: 30px auto; position: relative;}
-	div#Bckgrnd div {width: 30px; height: 30px; background-color: #000; position: absolute;}
+	div#Bckgrnd div {width: 28px; height: 28px; background-color: #000; position: absolute; border: 1px solid green;}
 </style>
 
 <body>
@@ -174,7 +174,7 @@ Snack.prototype.render = function () {
 		node = document.createElement('div');
 		node.style.left = this.data[i][0] + 'px';
 		node.style.top = this.data[i][1] + 'px';
-		node.style.backgroundColor = 'green';
+		node.style.backgroundColor = 'orange';
 		this.bckgrnd.appendChild(node);
 	}
 	node = document.createElement('div');
