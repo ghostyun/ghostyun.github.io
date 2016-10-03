@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>transition事件</title>
+</head>
+<style>
+#box {width: 200px; height: 200px; border: 1px solid #ccc; background: red; transition: 2s width, 2s height;}
+</style>
+<body>
+	<div id="box"></div>
+</body>
+<script>
+window.onload = function () {
+	var oBox = document.getElementById('box');
+	oBox.onclick = function () {
+		addEndEvent(oBox, endFn);
+		this.style.width = this.offsetWidth + 100 + 'px';
+		this.style.height = this.offsetHeight + 100 + 'px';
+	}
+
+	function endFn () {
+		removeEndEvent(this, endFn);
+		alert('end');
+	}
+
+	function addEndEvent(obj, fn) {
+		obj.addEventListener('WebkitTransitionEnd', fn, false);
+		obj.addEventListener('transitionend', fn, false);
+	}
+
+	function removeEndEvent(obj, fn) {
+		obj.removeEventListener('WebkitTransitionEnd', fn, false);
+		obj.removeEventListener('transitionend', fn, false);
+	}
+}
+</script>
+</html>

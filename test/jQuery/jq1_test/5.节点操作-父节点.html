@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>节点操作-父节点</title>
+	<script src="../jquery-3.1.0.js"></script>
+</head>
+<body>
+	<ul>
+		<li>
+			<div><span></span></div>
+		</li>
+		<li>
+			<div><span></span></div>
+		</li>
+		<li>
+			<div><span></span></div>
+		</li>
+		<li>
+			<div><span></span></div>
+		</li>
+		<li>
+			<div><span></span></div>
+		</li>
+	</ul>
+</body>
+<script>
+$(function(){
+	$('span').closest('li').css('backgroundColor','orange');
+});
+</script>
+</html>

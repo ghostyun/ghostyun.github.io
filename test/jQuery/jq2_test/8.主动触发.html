@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>主动触发</title>
+	<script src="../jquery-3.1.0.js"></script>
+</head>
+<body>
+	<input type="text">
+	<input type="button" value="添加内容">
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>		
+</body>
+<script>
+$(function(){
+	$('ul').delegate('li','click',function(){
+		$(this).css('backgroundColor','red');
+	});
+	$('input[type="button"]').click(function(){
+		var sStr = $('input[type="text"]').val();
+		if(sStr == ''){
+			return;
+		}else{
+			$('ul').append('<li>' + sStr + '</li>');
+		}
+	});
+	$('input[type="text"]').keydown(function(ev){
+		if(ev.which == 13){
+			//$('input[type="button"]').click();
+			$('input[type="button"]').trigger('click');
+		} 
+	});
+});
+</script>
+</html>

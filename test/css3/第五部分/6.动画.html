@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动画</title>
+</head>
+<style>
+.div1 {height: 80px; width: 80px; background: red;}
+.move {-webkit-animation: 2s doMove; width: 240px;}
+@-webkit-keyframes doMove
+{
+	0%{
+		width: 80px;
+	}
+	100%{
+		width: 240px;
+	}
+}
+</style>
+<body>
+	<div class="div1" id="iBox"></div>
+</body>
+<script>
+window.onload = function(){
+	document.getElementById('iBox').onclick = function(){
+		addClass(this, 'move');
+	};
+
+	function addClass(obj, AddClass){
+		var className = obj.className;
+		if(!className){
+			obj.className = AddClass;
+		}else{
+			var str = obj.className.split(' ');
+			for(var i=0; i<str.length; i++){
+				if(str[i] == AddClass){
+					return;
+				}
+			}
+			obj.className += ' ' + AddClass;
+		}
+	}
+}
+</script>
+</html>

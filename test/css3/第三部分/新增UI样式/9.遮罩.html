@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>遮罩</title>
+</head>
+
+<style>
+#mask {width: 800px; height: 600px; border: 1px solid #ccc; background: url(bg.jpg) no-repeat; background-size: 100% 100%; -webkit-mask: url(mask.png) no-repeat 0 100%;}
+</style>
+
+<body>
+	<div id="mask"></div>
+</body>
+
+<script>
+window.onload = function () {
+	var posX = 0;
+	var posY = 0;
+	var iMask = document.getElementById('mask');
+	var timmer = null;
+
+	function chPos (pX, pY) {
+		iMask.style.WebkitMaskPosition = pX + '% ' + pY + '%';
+	}
+
+	iMask.onmouseover = function () {
+		if (timmer) {
+			clearInterval(timmer);
+			timmer = null;
+		}
+		timmer = setInterval(function () {
+			if (posX < 100) {
+				posX++;
+			}
+			posY = posX * posX / 100 - 2 * posX + 100;
+			chPos(posX, posY);
+		}, 30);
+	}
+
+	iMask.onmouseout = function () {
+		if (timmer) {
+			clearInterval(timmer);
+			timmer = null;
+		}
+		timmer = setInterval(function () {
+			if (posX > 0) {
+				posX--;
+			}
+			posY = posX * posX / 100 - 2 * posX + 100;
+			chPos(posX, posY);
+		}, 30);
+	}
+}
+</script>
+
+</html>

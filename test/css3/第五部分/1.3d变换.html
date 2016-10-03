@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3d变换</title>
+</head>
+<style>
+#wrap {width: 100px; height: 100px; padding: 100px; margin: 100px auto; border: 5px solid #ccc; -webkit-transform-style: preserve-3d; -webkit-perspective: 100px;}
+.box {width: 100px; height: 100px; background: orange; transition: 1s;}
+#wrap:hover .box {-webkit-transform: rotateX(180deg);}
+</style>
+<body>
+	<div id="wrap">
+		<div class="box">123</div>
+	</div>
+</body>
+</html>

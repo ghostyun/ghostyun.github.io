@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<style>
+	#div1 div, #div2 div {width: 1200px; height: 150px; border: 1px solid #ccc; display: none;}
+	#div1, #div2 {position: relative;}
+	#div1 input, #div2 input {width: 24px;}
+	#div1 .active , #div2 .active {background: green;}
+</style>
+
+<body>
+	
+	<div id="div1">
+		<input type="button" class="active" value="1" />
+		<input type="button" class="" value="2" />
+		<input type="button" class="" value="3" />
+		<div style="display: block;">我是第一个的第一页</div>
+		<div>我是第一个的第二页</div>
+		<div>我是第一个的第三页</div>
+	</div>
+
+	<div id="div2">
+		<input type="button" class="active" value="1" />
+		<input type="button" class="" value="2" />
+		<input type="button" class="" value="3" />
+		<div style="display: block;">我是第二个的第一页</div>
+		<div>我是第二个的第二页</div>
+		<div>我是第二个的第三页</div>
+	</div>
+
+</body>
+
+<script>
+"use strict";
+
+window.onload = function () {
+	var t1 = new Tab('div1');
+	var t2 = new Tab('div2');
+	t1.init();
+	t2.init();
+	t1.autoPlay(1000);
+	t2.autoPlay(1000);
+}
+
+// 标签对象属性
+function Tab(id) {
+	this.oParrent = document.getElementById(id);
+	this.aBtn = this.oParrent.getElementsByTagName('input');
+	this.aDiv = this.oParrent.getElementsByTagName('div');
+	this.rec = 0;
+	this.timer = null;
+}
+
+// 初始化对象
+Tab.prototype.init = function () {
+	var This = this;
+	for (var i=this.aBtn.length-1; i>=0; i--) {
+		this.aBtn[i].index = i;
+		this.aBtn[i].onclick = function () {
+			This.rec = this.index;
+			This.change(this);
+		};
+	}
+}
+
+// 切换标签
+Tab.prototype.change = function (obj) {
+	for (var j=this.aBtn.length-1; j>=0; j--) {
+		this.aBtn[j].className = '';
+		this.aDiv[j].style.display = 'none';
+	}
+	obj.className = 'active';
+	this.aDiv[obj.index].style.display = 'block';	
+}
+
+// 自动切换
+Tab.prototype.autoPlay = function (delayTime) {
+	var This = this;
+	this.oParrent.onmouseover = function () {
+		This.stopTimer(This);
+	};
+	this.oParrent.onmouseout = function () {
+		This.beginTimer(This, delayTime)
+	};
+	this.beginTimer(this, delayTime);
+}
+
+// 暂停定时器
+Tab.prototype.stopTimer = function (This) {
+	clearInterval(This.timer);
+}
+
+// 启动定时器
+Tab.prototype.beginTimer = function (This, delayTime) {
+	This.timer = setInterval(function () {
+		if (This.rec > This.aBtn.length-1) {
+			This.rec = 0;
+		}
+		This.change(This.aBtn[This.rec++]);
+	}, delayTime);	
+}
+
+/* var oParrent;
+var aBtn;
+var aDiv;
+
+window.onload = function () {
+
+	oParrent = document.getElementById('div1');
+	aBtn = oParrent.getElementsByTagName('input');
+	aDiv = oParrent.getElementsByTagName('div');
+
+	init();
+
+}
+
+function init() {
+	for (var i=aBtn.length-1; i>=0; i--) {
+		aBtn[i].index = i;
+		aBtn[i].onclick = change;
+	}
+
+}
+
+function change () {
+	for (var j=aBtn.length-1; j>=0; j--) {
+		aBtn[j].className = '';
+		aDiv[j].style.display = 'none';
+	}
+	this.className = 'active';
+	aDiv[this.index].style.display = 'block';
+
+} */
+
+</script>
+
+</html>

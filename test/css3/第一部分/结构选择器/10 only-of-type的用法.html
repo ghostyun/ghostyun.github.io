@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	p {height: 30px; width: 300px; margin-bottom: 10px; border: 1px solid black;}
+	span {display: inline-block; height: 20px; margin: 5px 0; width: 300px;}
+	span:only-of-type {background: pink;}
+	/* 父级下唯一的span */
+</style>
+<body>
+	<p>p2</p>
+	<h1>h1</h1>
+	<p>p3</p>
+	<p><span>123</span><!-- span>456</span --></p>
+	<p>p4</p>
+	<h2><span>h2</span></h2>
+	<p>p5</p>
+</body>
+</html>

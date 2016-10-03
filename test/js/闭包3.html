@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包3</title>
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>	
+</body>
+<script>
+window.onload = function(){
+	function aaa(a){
+		var b = 222;
+		function bbb(){
+			a++;
+			b++;
+			return {a:a,b:b};
+		}
+		return bbb;
+	}
+	var val = aaa(111)();
+	console.log(val);
+}
+</script>
+</html>

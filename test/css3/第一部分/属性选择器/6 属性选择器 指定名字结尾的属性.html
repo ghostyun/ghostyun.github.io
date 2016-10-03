@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+ul {padding: 0; margin: 0;}
+li {list-style: none;}
+li[yangshi$=S3] {background: orange;}
+// 单独数字不匹配，应该是不能数字开头
+// 区分大小写
+</style>
+<body>
+	<ul>
+		<li yangshi="ys1">111</li>
+		<li yangshi="ys2">222</li>
+		<li yangshi="ys3">333</li>
+		<li yangshi="yS3">444</li>
+	</ul>
+</body>
+</html>

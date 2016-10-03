@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文字光斑</title>
+</head>
+
+<style>
+div {width: 600px; height: 80px; border: 1px solid #000; background: #333; text-align: center; margin: 0 auto;}
+h1 {display: inline-block; width: 600px; color: rgba(255,255,255,0.5); margin: 0; font-size: 46px; line-height: 80px; background: -webkit-linear-gradient(-30deg, rgba(255,255,255,0) 0px, rgba(255,255,255,1) 20px, rgba(255,255,255,1) 100px, rgba(255,255,255,0) 120px); -webkit-background-clip: text; background-position: -50px;}
+</style>
+
+<body>
+	<div>
+		<h1>打造精品特效文字！</h1>
+	</div>
+</body>
+<script>
+window.onload = function () {
+	var oDiv = document.getElementsByTagName('div')[0];
+	var oH = oDiv.getElementsByTagName('h1')[0];
+	var oTimmer = null;
+	var iPos = -50;
+	var iSwit = true;
+
+	toRun();
+
+	oDiv.onclick = function () {
+		iSwit = !iSwit;
+		toRun();
+		// document.title = iSwit;
+	}
+
+	function toGo() {
+		toClear();
+		oTimmer = setInterval(function () {
+			oH.style.backgroundPosition = iPos + 'px';
+			iPos += 10;
+			if (iPos >= 550) {
+				iPos = -50;
+			}
+		}, 50);
+	}
+
+	function toBack () {
+		toClear();
+		oTimmer = setInterval(function () {
+			oH.style.backgroundPosition = iPos + 'px';
+			if (iPos <= -50) {
+				toClear();
+			} else {
+				iPos -= 10; 
+			}
+		}, 50);
+	}
+
+	function toClear() {
+		clearInterval(oTimmer);
+		oTimmer = null;
+	}
+	
+	function toRun() {
+		if (iSwit) {
+			oDiv.onmouseover = function () {
+				toGo();
+			}
+
+			oDiv.onmouseout = function () {
+				toBack();
+			}
+		} else {
+			oDiv.onmouseout = null;
+		}
+	}
+}
+</script>
+</html>

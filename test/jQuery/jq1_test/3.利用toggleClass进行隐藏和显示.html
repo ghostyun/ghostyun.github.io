@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>利用toggleClass</title>
+	<script src="../jquery-3.1.0.js"></script>
+</head>
+<style>
+ul {border: 1px solid #333; width: 100px; height: 150px; display: none;}
+.showBox {display: block;}
+</style>
+<body>
+	<button>点击显示</button>
+	<ul>
+		<li>00001</li>
+		<li>00002</li>
+		<li>00003</li>
+		<li>00004</li>
+		<li>00005</li>
+	</ul>
+</body>
+<script>
+$(function(){
+	$('button').click(function(){
+		$(this).nextAll('ul').toggleClass('showBox');
+	});
+});
+</script>
+</html>

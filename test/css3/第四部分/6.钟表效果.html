@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>钟表效果</title>
+</head>
+<style id="css">
+#wrap {height: 500px; width: 500px; border: 1px solid #ccc; margin: 100px auto; position: relative;}
+#wrap ul {padding: 0; margin: 0; list-style: none; width: 300px; height: 300px; border: 1px solid #000; border-radius: 50%; margin: 100px auto; position: relative;}
+#wrap ul li {height: 6px; width: 2px; background: #000; position: absolute; top: 0; left: 149px; -webkit-transform-origin: center 150px;}
+
+/*
+#wrap ul li:nth-of-type(1) {-webkit-transform: rotate(0deg);}
+#wrap ul li:nth-of-type(2) {-webkit-transform: rotate(6deg);}
+#wrap ul li:nth-of-type(3) {-webkit-transform: rotate(12deg);}
+#wrap ul li:nth-of-type(4) {-webkit-transform: rotate(18deg);}
+#wrap ul li:nth-of-type(5) {-webkit-transform: rotate(24deg);}
+#wrap ul li:nth-of-type(6) {-webkit-transform: rotate(30deg);}
+#wrap ul li:nth-of-type(7) {-webkit-transform: rotate(36deg);}
+#wrap ul li:nth-of-type(8) {-webkit-transform: rotate(42deg);}
+*/
+#wrap ul li:nth-of-type(5n+1) {height: 12px;}
+#hour, #min, #sec {-webkit-transform-origin: bottom center;}
+#hour {width: 6px; height: 56px; background: #000; position: absolute; top: 194px; left: 247px;}
+#min {width: 4px; height: 96px; background: green; position: absolute; top: 154px; left: 248px;}
+#sec {width: 2px; height: 116px; background: red; position: absolute; top: 134px; left: 249px;}
+#icon {width: 12px; height: 12px; background: #000; border-radius: 50%; position: absolute; top: 244px; left: 244px;}
+</style>
+<body>
+	<div id="wrap">
+		<ul id="list">
+		<!--
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		-->
+		</ul>
+		<div id="hour"></div>
+		<div id="min"></div>
+		<div id="sec"></div>
+		<div id="icon"></div>
+	</div>
+</body>
+<script>
+window.onload = function () {
+	var oList = document.getElementById('list');
+	var oCss = document.getElementById('css');
+	var aList = '';
+	var sCss = '';
+	for(var i=0; i<60; i++){
+		aList += '<li></li>';
+		sCss += '#wrap ul li:nth-of-type(' + (i+1) + ') {-webkit-transform: rotate(' + i*6 + 'deg);}';
+	}
+
+	oCss.innerHTML += sCss;
+	oList.innerHTML = aList;
+	
+
+	//--------------------------------------------
+	var oTimer = setInterval(setTime, 1000);
+
+	var idSec = document.getElementById('sec');
+	var idMin = document.getElementById('min');
+	var idHour = document.getElementById('hour');
+
+	function setTime() {
+		var oDate = new Date();
+		var iSec = oDate.getSeconds();
+		var iMin = oDate.getMinutes() + iSec/60;
+		var iHour = oDate.getHours() + iMin/60;
+		
+		idSec.style.WebkitTransform = 'rotate(' + 6*iSec + 'deg)';
+		idMin.style.WebkitTransform = 'rotate(' + 6*iMin + 'deg)';
+		idHour.style.WebkitTransform = 'rotate(' + 30 * iHour + 'deg)';
+	}
+}
+</script>
+</html>

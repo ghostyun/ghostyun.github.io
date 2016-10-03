@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>节点创建和添加</title>
+	<script src="../jquery-3.1.0.js"></script>
+</head>
+<body>
+	<div></div>
+</body>
+<script>
+$(function(){
+	var $node = $('<ul><li>123</li><li class="active">456</li></ul>');
+	$('div').append($node);
+});
+</script>
+</html>

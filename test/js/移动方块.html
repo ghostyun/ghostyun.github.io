@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>移动方块</title>
+</head>
+<style>
+	p.title {text-align: center; font-size: 30px; color: orange;}
+	div#Bckgrnd {width: 600px; height: 600px; border: 1px solid #ccc; margin: 30px auto; position: relative;}
+	div#head {width: 30px; height: 30px; background-color: #000; position: absolute;}
+	div#Bckgrnd li {width: 30px; height: 30px; background-color: green; position: absolute; list-style: none;}
+	ul {margin: 0; padding: 0;}
+</style>
+
+<body>
+	<p class="title">移动方块</p>
+	<div id="Bckgrnd">
+		<div id="head"></div>
+	</div>
+</body>
+
+<script>
+	window.onload = function () {
+		var Bckgrnd = document.getElementById('Bckgrnd');
+		var snack = new Snack('head', Bckgrnd);
+
+		snack.init();
+	}
+
+	function Snack (id, bckgrnd) {
+		this.bckgrnd = bckgrnd;
+		this.Head = document.getElementById(id);
+		this.switch = 0;
+		this.recDir = 'right';
+		this.ev = null;
+		this.timmer = null;
+		this.pos = {left : 0, top: 0};
+	}
+
+	Snack.prototype.init = function () {
+		var This = this;
+		document.onkeydown = function (ev) {
+			this.ev = ev || window.event;
+
+			if (ev && ev.keyCode == 13) {
+				This.switch = !This.switch;
+				if (This.switch == 1) {
+					This.clear();
+					This.move(This, This.recDir);
+				} else {
+					This.clear();
+				}
+			}
+
+			if (This.switch == 1 && ev) {
+				switch (ev.keyCode) {
+					case 38 : 
+					if (This.recDir != 'down') {
+						This.recDir = 'up';
+						This.move(This, 'up');
+					};
+					break;
+					case 40 : 
+					if (This.recDir != 'up') {
+						This.recDir = 'down';
+						This.move(This, 'down');
+					};
+					break;
+					case 37 : 
+					if (This.recDir != 'right') {
+						This.recDir = 'left';
+						This.move(This, 'left');
+					}
+					;
+					break;
+					case 39 : 
+					if (This.recDir != 'left') {
+						This.recDir = 'right';
+						This.move(This, 'right');
+					}
+					;
+					break;
+				}
+			}
+		}
+	}
+
+	Snack.prototype.clear = function () {
+		clearInterval(this.timmer);
+		this.timmer = null;
+	}
+
+	Snack.prototype.move = function (This, dir) {
+		var innerWidth = This.bckgrnd.offsetWidth-This.Head.offsetWidth;
+		var innerHeight = This.bckgrnd.offsetHeight-This.Head.offsetHeight;
+		if (dir == 'right') {
+			this.clear();
+			this.timmer = setInterval(function () {
+				This.Head.style.left = This.pos.left + 'px';
+				if (This.pos.left < innerWidth) {
+					This.pos.left+=1;
+				} else {
+					This.pos.left = 0;
+				}
+			}, 10);
+		}
+		if (dir == 'left') {
+			this.clear();
+			this.timmer = setInterval(function () {
+				This.Head.style.left = This.pos.left + 'px';
+				if (This.pos.left > 0) {
+					This.pos.left-=1;
+				} else {
+					This.pos.left = innerWidth;
+				}
+			}, 10);
+		}
+		if (dir == 'up') {
+			this.clear();
+			this.timmer = setInterval(function () {
+				This.Head.style.top = This.pos.top + 'px';
+				if (This.pos.top > 0) {
+					This.pos.top-=1;
+				} else {
+					This.pos.top = innerHeight;
+				}
+			}, 10);
+		}
+		if (dir == 'down') {
+			this.clear();
+			this.timmer = setInterval(function () {
+				This.Head.style.top = This.pos.top + 'px';
+				if (This.pos.top < innerHeight) {
+					This.pos.top+=1;
+				} else {
+					This.pos.top = 0;
+				}
+			}, 10);
+		}
+	}
+
+	Snack.prototype.eat = function () {
+
+	}
+
+	Snack.prototype.die = function () {
+
+	}
+
+</script>
+</html>
