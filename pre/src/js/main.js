@@ -1,4 +1,4 @@
 /**
  * Created by yfw on 2016/12/7.
  */
-console.log('Welcom to Love in my heart !');
+console.log('Welcome to Love in my heart !');
