@@ -1,0 +1,23 @@
+/* 初始化浏览器默认值 */
+body, div, p, form, ul, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6 {
+  padding: 0;margin: 0;
+}
+body {
+  background-color: #ffffff;
+}
+ul, ol {
+  list-style: none;
+}
+img {
+  border: none; vertical-align: middle;
+}
+
+/* 全局链接 */
+a:link {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
