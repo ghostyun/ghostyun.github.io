@@ -64,3 +64,15 @@ a:hover {
     }
   }
 }
+
+.footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  text-align: right;
+  background: #000000;
+  color: #eeeeee;
+  font-size: 14px;
+  line-height: 28px;
+}
