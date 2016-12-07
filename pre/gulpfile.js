@@ -14,7 +14,6 @@ gulp.task('sass', function(){
 });
 
 gulp.task('run', function(){
-    webpack(webpack_config, function(){
-        // To Do
-    });
+    gulp.src('src/tpl/main.html')
+        .pipe(gulp.dest('build/html'));
 });

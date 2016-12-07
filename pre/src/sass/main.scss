@@ -22,6 +22,45 @@ a:hover {
   cursor: pointer;
 }
 
-.main_title {
-  color: rebeccapurple;
+#wrap {
+  width: 1190px;
+  margin: 0 auto;
+  text-align: left;
+  font-size: 0;
+  .title {
+    font-size: 36px;
+    line-height: 60px;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  .rec {
+    li {
+      margin-bottom: 15px;
+      border-bottom: 1px solid #eeeeee;
+
+      a {
+        padding-left: 10px;
+        font-size: 12px;
+        color: #333333;
+        line-height: 24px;
+
+        &:hover {
+          color: orangered;
+        }
+      }
+      p {
+        margin-top: 5px;
+        background-color: antiquewhite;
+        border: 1px solid #333333;
+        border-radius: 12px;
+        font-size: 12px;
+        padding: 12px;
+        line-height: 26px;
+
+        .text-push {
+          padding-left: 10px;
+        }
+      }
+    }
+  }
 }
