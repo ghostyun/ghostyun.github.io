@@ -11,7 +11,12 @@
     body {
         background-color: peachpuff;
     }
-    #heart {
+    .myheart {
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+    }
+    #love {
         display: block;
         width: 100vw;
         margin: 0 auto;
@@ -19,13 +24,66 @@
         top: 50%;
         transform: translate(0,-50%);
     }
+    .txt {
+        width: 60vw;
+        position: absolute;
+        top: 46%;
+        left: 50%;
+        margin-left: -30vw;
+        transform: translate(0,-50%);
+        color: #666666;
+        font-size: 2vw;
+    }
+    .title {
+        opacity: 0;
+    }
+    .content {
+        opacity: 0;
+        text-indent: 2em;
+        line-height: 1.6;
+    }
+    .content .value {
+        font-size: 2.75vw;
+        margin: 0 0.2vw;
+    }
+    .mark {
+        opacity: 0;
+        text-align: right;
+        width: 36vw;
+        margin: 10vw auto 0;
+        line-height: 2;
+    }
+    .txt.on .title {
+        opacity: 1;
+        transition: opacity 2s;
+    }
+    .txt.on .content {
+        opacity: 1;
+        transition: opacity 2s 2s;
+    }
+    .txt.on .mark {
+        opacity: 1;
+        transition: opacity 2s 4s;
+    }
 </style>
 <body>
-    <canvas id="heart"></canvas>
+    <div class="myheart">
+        <canvas id="love"></canvas>
+        <div class="txt" id="add_on">
+            <p class="title">亲爱的Iris Xu，这是我们相爱在一起的时光~</p>
+            <p class="content">
+                <span class="value" id="days">1600</span>days
+                <span class="value" id="hours">21</span>hours
+                <span class="value" id="minutes">55</span>minutes
+                <span class="value" id="seconds">45</span>seconds
+            </p>
+            <p class="mark">爱你直到永永远远<br>Mr Zhao</p>
+        </div>
+    </div>
 </body>
 <script>
     (function(){
-        var cas=document.getElementById('heart'), ctx=cas.getContext('2d');
+        var cas=document.getElementById('love'), ctx=cas.getContext('2d');
         cas.width=600;
         cas.height=700,
                 count=getRandInt(8,15),
@@ -146,7 +204,6 @@
                 v4 = v2.clone().mult(this.yadd); //.rotate(this.tanAngleB);
                 ctx.beginPath();
                 ctx.strokeStyle = this.c;
-                console.log(ctx.strokeStyle);
 
                 ctx.lineWidth=1;
                 ctx.moveTo(v1.x, v1.y);
@@ -169,6 +226,35 @@
         function getRand(min,max){
             return Math.random()*(max-min)+min;
         }
+    }());
+    (function(){
+        var obj = document.getElementById('add_on');
+        setTimeout(function(){
+            obj.className = obj.className + ' on';
+        }, 2000);
+    }());
+    (function () {
+        var d = document.getElementById('days');
+        var h = document.getElementById('hours');
+        var m = document.getElementById('minutes');
+        var s = document.getElementById('seconds');
+
+        function setTime(){
+            var count = new Date() - new Date("2013,1,25");
+            var c_d = Math.floor(count/1000/60/60/24);
+            var c_h =  Math.floor((count - c_d*1000*60*60*24)/1000/60/60);
+            var c_m = Math.floor((count - c_d*1000*60*60*24 - c_h*1000*60*60)/1000/60);
+            var c_s = Math.floor((count - c_d*1000*60*60*24 - c_h*1000*60*60 - c_m*1000*60) / 1000);
+
+            d.innerHTML = c_d;
+            h.innerHTML = c_h;
+            m.innerHTML = c_m;
+            s.innerHTML = c_s;
+        }
+        setInterval(function(){
+            setTime();
+        }, 1000);
+
     }());
 </script>
 </html>
